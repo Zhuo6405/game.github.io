@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hello, world!</title>
+    </head>
+    <body>
+        <script>
+            function gameplay(){
+                var name = prompt("請輸入你的名稱");
+                var game = confirm("請問"+name+"是否要進行遊戲");
+                // var flag = Boolean(false);
+                if(game){
+                    if(qus("前方有村莊是否前往","獲得一把劍","被村民襲擊",true)) return;
+                    if(qus("你被野獸追趕是否進入洞穴","成功通過","遇到死路被啃食死亡",true)) return;
+                    if(qus("前方是一位受傷的公主是否幫助他","獲得神之力","其實她是女巫扮演的然後捅了你一刀,死亡",true)) return;
+                    if(qus("前方有敵人是否上前進攻","成功拿下對方","因為失手死亡",true)) return;
+                    if(qus("因為過河不甚失足旁邊剛好有繩子是否抓住","你成功活下來","你抓到獅子的尾巴結果一人一獸掉下瀑布裡",true)) return;
+                    alert("恭喜成功");
+                }else{
+                    alert("不想玩就881");
+                }
+            }
+            function qus(message,good,bad,Boolean){
+                var TorF = confirm(message+"是否前往");
+                if(TorF){
+                    alert(good);
+                }else{
+                    alert(bad);
+                    alert("遊戲結束");
+                    return true;
+                }
+            }
+            gameplay();
+        </script>
+    </body>
+</html>
