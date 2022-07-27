@@ -4,36 +4,121 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Hello, world!</title>
+        <style>
+            #color_box {
+                width: 200px;
+                height: 200px;
+                background-color: rgb(134, 85, 85);
+                }
+        </style>
     </head>
     <body>
-        <script>
-            function gameplay(){
-                var name = prompt("請輸入你的名稱");
-                var game = confirm("請問"+name+"是否要進行遊戲");
-                // var flag = Boolean(false);
-                if(game){
-                    if(qus("前方有村莊是否前往","獲得一把劍","被村民襲擊",true)) return;
-                    if(qus("你被野獸追趕是否進入洞穴","成功通過","遇到死路被啃食死亡",true)) return;
-                    if(qus("前方是一位受傷的公主是否幫助他","獲得神之力","其實她是女巫扮演的然後捅了你一刀,死亡",true)) return;
-                    if(qus("前方有敵人是否上前進攻","成功拿下對方","因為失手死亡",true)) return;
-                    if(qus("因為過河不甚失足旁邊剛好有繩子是否抓住","你成功活下來","你抓到獅子的尾巴結果一人一獸掉下瀑布裡",true)) return;
-                    alert("恭喜成功");
-                }else{
-                    alert("不想玩就881");
-                }
-            }
-            function qus(message,good,bad,Boolean){
-                var TorF = confirm(message+"是否前往");
-                if(TorF){
-                    alert(good);
-                }else{
-                    alert(bad);
-                    alert("遊戲結束");
-                    return true;
-                }
-            }
-            
-            gameplay();
-        </script>
+        <div id="color_box" class="block" onload="blockColor()"></div>
+        <button id="but1">R</button>
+        <input type="range" id="redRange" min="0" max="255"><br/>
+        <button id="but2">G</button>
+        <input type="range" id="greenRange" min="0" max="255"><br/>
+        <button id="but3">B</button>
+        <input type="range" id="blueRange" min="0" max="255"><br/>
+        <button id="but4">+</button>
+        <button id="but5">-</button>
+        <button id="but6">?</button>
     </body>
+    <script>
+        var but1 = document.getElementById("but1");
+        var but2 = document.getElementById("but2");
+        var but3 = document.getElementById("but3");
+        var redR = document.getElementById("redRange");
+        var greenR = document.getElementById("greenRange");
+        var blueR = document.getElementById("blueRange");
+        var but4 = document.getElementById("but4");
+        var but5 = document.getElementById("but5");
+        var but6 = document.getElementById("but6");
+        window.addEventListener("load",function(){
+            document.getElementById("color_box").style.backgroundColor=getColor();
+        })
+        function getColor(){
+            var colorful="rgb("
+            var temp ="";
+            for(var i=0;i<3;i++){
+                temp+=" "
+                for(var j=0;j<1;j++){
+                    temp+=getRandomInt(256);
+                }
+            }
+            temp+=")"
+            colorful+=temp;
+            return colorful
+        }
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+        but1.addEventListener("click",function(){
+            while(true){
+                var colorInt = prompt("請輸入0~255之間的數字");
+                if(colorInt>=0 && colorInt<=255){
+                    break;
+                }
+            }
+            var color="rgb("
+            var temp = " 000 000)"
+            document.getElementById("color_box").style.backgroundColor=color +colorInt +temp;
+        })
+        but2.addEventListener("click",function(){
+            while(true){
+                var colorInt = prompt("請輸入0~255之間的數字");
+                if(colorInt>=0 && colorInt<=255){
+                    break;
+                }
+            }
+            var color="rgb(000 "
+            var temp = "  000)"
+            document.getElementById("color_box").style.backgroundColor=color +colorInt +temp;
+        })
+        but3.addEventListener("click",function(){
+            while(true){
+                var colorInt = prompt("請輸入0~255之間的數字");
+                if(colorInt>=0 && colorInt<=255){
+                    break;
+                }
+            }
+            var color="rgb(000 000 "
+            var temp = " )"
+            document.getElementById("color_box").style.backgroundColor=color +colorInt +temp;
+        })
+        
+        redR.addEventListener("change",function(){
+            var redRangInt = document.getElementById("redRange").value;
+            var greenRangInt = document.getElementById("greenRange").value;
+            var blueRangInt = document.getElementById("blueRange").value;
+            var color="rgb( "
+            var temp = ")"
+            document.getElementById("color_box").style.backgroundColor=color + redRangInt + " " + greenRangInt + " " + blueRangInt + temp;
+        })
+        greenR.addEventListener("change",function(){
+            var redRangInt = document.getElementById("redRange").value;
+            var greenRangInt = document.getElementById("greenRange").value;
+            var blueRangInt = document.getElementById("blueRange").value;
+            var color="rgb( "
+            var temp = " )"
+            document.getElementById("color_box").style.backgroundColor=color + redRangInt + " " + greenRangInt + " " + blueRangInt + temp;
+        })
+        blueR.addEventListener("change",function(){
+            var redRangInt = document.getElementById("redRange").value;
+            var greenRangInt = document.getElementById("greenRange").value;
+            var blueRangInt = document.getElementById("blueRange").value;
+            var color="rgb( "
+            var temp = ")"
+            document.getElementById("color_box").style.backgroundColor=color + redRangInt + " " + greenRangInt + " " + blueRangInt + temp;
+        })
+        // but4.addEventListener("mouseenter",function(){
+        //     var totoalBackgroundColor = document.getElementById("color_box").style.backgroundColor;
+        //     but4.addEventListener("click",function(){
+        //         document.getElementById("color_box").style.backgroundColor=totalBackgroundColor+1;
+        //     })
+        // })
+        but6.addEventListener("click",function(){
+            document.getElementById("color_box").style.backgroundColor=getColor();
+        })
+    </script>
 </html>
